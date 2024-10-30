@@ -1,5 +1,5 @@
 <?php
-namespace App\Service;
+namespace App\Services;
 
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\WorkshopRepositoryInterface;
@@ -20,7 +20,7 @@ class FrontService
     {
         $categories = $this->categoryRepository->getAllCategories();
         $newWorkshops = $this->workshopRepository->getAllNewWorkshops();
-
-        return compact('categories', ' newWorkshops');
+        
+        return compact('categories', 'newWorkshops');
     }
 }
