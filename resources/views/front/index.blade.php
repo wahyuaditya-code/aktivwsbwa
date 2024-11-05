@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','Aktiv Workshop Offline')
 @section('content')
 <div class="h-[112px]">
     <nav class="fixed top-0 flex items-center w-full justify-between p-8 bg-white z-30">
