@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Request\StoreBookingRequest;
-use App\Http\Request\StoreCheckBookRequest;
-use App\Http\Request\StorePaymentRequest;
+use App\Http\Requests\StoreBookingRequest;
+use App\Http\Requests\StoreCheckBookRequest;
+use App\Http\Requests\StorePaymentRequest;
 use App\Models\BookingTransaction;
 use App\Models\Workshop;
 use App\Services\BookingService;
@@ -15,15 +15,21 @@ class BookingController extends Controller
 {
     protected $bookingService;
 
-    public function __cosntruct(BookingService $bookingService)
+    public function __construct(BookingService $bookingService)
     {
-        $this->$bookingService = $bookingService;
+        $this->bookingService = $bookingService;
+    }
+
+    public function booking(Workshop $workshop)
+    {
+        return view('booking.booking', compact('workshop'));
     }
 
     public function bookingStore(StoreBookingRequest $request, Workshop $workshop)
     {
         $validated = $request->validated();
         $validated['workshop_id'] = $workshop->id;
+        
 
         try{
             $this->bookingService->storeBooking($validated);
@@ -41,6 +47,7 @@ class BookingController extends Controller
         }
 
         $data = $this->bookingService->getBookingDetails();
+        dd($data);
 
         if(!$data){
             return redirect()->route('front.index');

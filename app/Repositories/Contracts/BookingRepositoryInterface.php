@@ -2,7 +2,8 @@
 
 namespace App\Repositories\Contracts;
 
-interface BoookingRepositoryInterface
+interface BookingRepositoryInterface
+
 {
     public function createBooking(array $data);
 

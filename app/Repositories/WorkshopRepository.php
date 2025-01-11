@@ -11,7 +11,7 @@ class WorkshopRepository implements WorkshopRepositoryInterface
     }
 
     public function find($id){
-        return Workshop::fined($id);
+        return Workshop::find($id);
     }
     
     public function getPrice($workshopId){

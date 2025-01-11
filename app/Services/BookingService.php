@@ -27,6 +27,7 @@ class BookingService
     {
         //ambil data dari session di BookingRepository
         $existingData= $this->bookingRepository->getOrderDataFromSession();
+        
 
         // menyamakan data dan merge data untuk di updated
         $updatedData= array_merge($existingData, $validatedData);

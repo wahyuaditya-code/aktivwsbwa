@@ -22,7 +22,7 @@ class BookingRepository implements BookingRepositoryInterface
                                 ->fisrt();
     }
 
-    public function saveToSession()
+    public function saveToSession(array $data)
     {
         Session::put('orderData', $data);
     }
