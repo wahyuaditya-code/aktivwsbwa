@@ -47,7 +47,7 @@ class BookingController extends Controller
         }
 
         $data = $this->bookingService->getBookingDetails();
-        dd($data);
+        // dd($data);
 
         if(!$data){
             return redirect()->route('front.index');
@@ -69,7 +69,7 @@ class BookingController extends Controller
     }
 
     public function bookingFinished(BookingTransaction $bookingTransaction)
-    {
+    { 
         return view('booking.booking_finished', compact('bookingTransaction'));
     }
 

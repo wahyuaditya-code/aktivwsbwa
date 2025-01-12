@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Repositories\Contracts\BookingRepositoryInterface;
 use App\Repositories\Contracts\WorkshopRepositoryInterface;
 
-use App\Models\BookingTranscaction;
+use App\Models\BookingTransaction;
 use App\Models\WorkshopParticipant;
 
 use Illuminate\Support\Facades\DB;
@@ -98,7 +98,7 @@ class BookingService
         DB::beginTransaction();
 
         try {
-            $bookingTranscaction = BookingTransaction::create([
+            $bookingTransaction = BookingTransaction::create([
                 'name' => $orderData['name'],
                 'email' => $orderData['email'],
                 'phone' => $orderData['phone'],
@@ -119,8 +119,8 @@ class BookingService
                     'name' => $participant['name'],
                     'ocupation' => $participant['ocupation'],
                     'email' => $participant['email'],
-                    'workshop_id' => $bookingTranscaction->workshop_id,
-                    'booking_transaction_id' => $bookingTranscaction->id,
+                    'workshop_id' => $bookingTransaction->workshop_id,
+                    'booking_transaction_id' => $bookingTransaction->id,
                 ]);
             }
             //commit the transaction
@@ -130,7 +130,7 @@ class BookingService
             $this->bookingRepository->clearSession();
 
             //return the booking transaction ID for redirect
-            return $bookingTranscaction->id;
+            return $bookingTransaction->id;
 
         } catch( \Exception $e) {
             //log the exception for debugging
